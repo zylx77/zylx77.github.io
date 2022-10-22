@@ -16,24 +16,24 @@
   <meta name="author" content="Gnguyd">
   <meta name="keywords" content="">
   
-    <meta name="description" content="业务逻辑漏洞介绍逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。 类型1234567891.弱口令2.暴力破解3.验证码安全问题4.接收端前端可控5.重置凭证未校验6.任意用户密码修改7.越权访问8.数据遍历9.订单金额修改    1)弱口令弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。  例如：abc、123、12345">
+    <meta name="description" content="linux用户和组一.Linux用户分类1234567891011121、root用户:权限最高.	操作其他用户的文件，控制可执行程序管理硬件设备，管理文件权限2、系统用户:虚拟用户、伪用户或者假用户。	这类用户不能登录Linux系统。	系统进程运行身份。	系统用户:			ID为1-999，（CentOS7之前为1-499）3、普通用户:	root用户创建，能够使用大部分资源，一些特定权限受限。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逻辑漏洞">
-<meta property="og:url" content="https://zylx77.github.io/2022/10/10/ye-wu-luo-ji-lou-dong/index.html">
+<meta property="og:title" content="Linux用户和组">
+<meta property="og:url" content="https://zylx77.github.io/2022/07/22/linux-yong-hu-he-zu/index.html">
 <meta property="og:site_name" content="Zylx77">
-<meta property="og:description" content="业务逻辑漏洞介绍逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。 类型1234567891.弱口令2.暴力破解3.验证码安全问题4.接收端前端可控5.重置凭证未校验6.任意用户密码修改7.越权访问8.数据遍历9.订单金额修改    1)弱口令弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。  例如：abc、123、12345">
+<meta property="og:description" content="linux用户和组一.Linux用户分类1234567891011121、root用户:权限最高.	操作其他用户的文件，控制可执行程序管理硬件设备，管理文件权限2、系统用户:虚拟用户、伪用户或者假用户。	这类用户不能登录Linux系统。	系统进程运行身份。	系统用户:			ID为1-999，（CentOS7之前为1-499）3、普通用户:	root用户创建，能够使用大部分资源，一些特定权限受限。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zylx77.github.io/img/avatar.png">
-<meta property="article:published_time" content="2022-10-10T15:51:42.000Z">
-<meta property="article:modified_time" content="2022-10-22T05:36:37.107Z">
+<meta property="og:image" content="https://zylx77.github.io/img/Linux.png">
+<meta property="article:published_time" content="2022-07-22T05:31:00.000Z">
+<meta property="article:modified_time" content="2022-10-22T05:38:26.588Z">
 <meta property="article:author" content="Gnguyd">
-<meta property="article:tag" content="渗透测试基础">
+<meta property="article:tag" content="Linux基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zylx77.github.io/img/avatar.png">
+<meta name="twitter:image" content="https://zylx77.github.io/img/Linux.png">
   
   
   
-  <title>逻辑漏洞 - Zylx77</title>
+  <title>Linux用户和组 - Zylx77</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="逻辑漏洞"></span>
+            <span id="subtitle" data-typed-text="Linux用户和组"></span>
           
         </div>
 
@@ -209,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-10 23:51" pubdate>
-          2022年10月10日 晚上
+        <time datetime="2022-07-22 13:31" pubdate>
+          2022年7月22日 下午
         </time>
       </span>
     
@@ -270,60 +270,124 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">逻辑漏洞</h1>
+            <h1 style="display: none">Linux用户和组</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="业务逻辑漏洞"><a href="#业务逻辑漏洞" class="headerlink" title="业务逻辑漏洞"></a>业务逻辑漏洞</h1><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。</p>
-<h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs">1.弱口令<br>2.暴力破解<br>3.验证码安全问题<br>4.接收端前端可控<br>5.重置凭证未校验<br>6.任意用户密码修改<br>7.越权访问<br>8.数据遍历<br>9.订单金额修改<br></code></pre></td></tr></table></figure>
+                <h1 id="linux用户和组"><a href="#linux用户和组" class="headerlink" title="linux用户和组"></a>linux用户和组</h1><h2 id="一-Linux用户分类"><a href="#一-Linux用户分类" class="headerlink" title="一.Linux用户分类"></a>一.Linux用户分类</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">1、root用户:权限最高.</span><br>	操作其他用户的文件，控制可执行程序管理硬件设备，管理文件权限<br><br><span class="hljs-section">2、系统用户:虚拟用户、伪用户或者假用户。</span><br>	这类用户不能登录Linux系统。<br>	系统进程运行身份。<br>	系统用户:	<br>		ID为1-999，（CentOS7之前为1-499）<br><br><span class="hljs-section">3、普通用户:</span><br>	root用户创建，能够使用大部分资源，一些特定权限受限。<br>	ID为1000-65535<br></code></pre></td></tr></table></figure>
 
+<h2 id="二-Linux用户登录过程"><a href="#二-Linux用户登录过程" class="headerlink" title="二.Linux用户登录过程"></a>二.Linux用户登录过程</h2><p>1./etc/passwd</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br>账户<span class="hljs-symbol">:</span>密码占位符<span class="hljs-symbol">:UID</span><span class="hljs-symbol">:GID</span><span class="hljs-symbol">:</span>账户信息<span class="hljs-symbol">:</span>家目录<span class="hljs-symbol">:</span>登录shell<br></code></pre></td></tr></table></figure>
 
+<p>家目录:存放用户自己的数据</p>
+<p>2./etc/shadow</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">root</span>:$<span class="hljs-number">6</span>$sVI78ZA4$QQ9jzXKyhjEpsjz6I5lsPAQcNNamPxivy25rnhK1UZ/<span class="hljs-number">1</span>kv07qUrOlN2ZalIpAZwowkEHlk5/<span class="hljs-number">40</span>wPZ8uDioAi41:<span class="hljs-number">17995</span>:<span class="hljs-number">0</span>:<span class="hljs-number">99999</span>:<span class="hljs-number">7</span>:::<br></code></pre></td></tr></table></figure>
 
-<h5 id="1-弱口令"><a href="#1-弱口令" class="headerlink" title="1)弱口令"></a>1)弱口令</h5><p>弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。</p>
 <ul>
-<li>例如：abc、123、123456、111111、admin、guest、test等 </li>
-<li>除此之外，纯数字以及纯字母并且密码长度小于6位的口令也被称之为弱口令，理想情况下，以此作为密码的口令暴力破解工具只需要半天的时间就能成功破解密码。</li>
-<li>在允许社会工程学攻击的情况下，密码中仅带有与自身相关的信息也可以称之为弱口令，如受害者为王伟，通过简单的社工信息收集到生日为19920801 那么以wangwei123、wangwei19920801、ww19920801、WangWei123此类的密码均被认为是弱口令。</li>
-<li>另外，企业、CMS以及系统服务的默认口令也被认为是弱口令的一种。</li>
+<li><p>第1个字段：用户名</p>
+</li>
+<li><p>第2个字段：加密密码，加密算法是SHA512加密算法，如果是“！！”“*”代表没有密码，不能登录</p>
+</li>
+<li><p>第3个字段：密码最后一次修改日期，我们看到root的这个字段是17995，这个是使用1970年1月1日作为标准时间，每过一天，时间戳+1</p>
+</li>
+<li><p>第4个字段：两次密码的修改间隔时间（和第3个字段相比），就是说多少天后可以修改这个密码，我们看到root用户的这个字段是0</p>
+</li>
+<li><p>第5个字段：密码有效期（和第3个字段相比），我们看到root用户的这个字段是99999，基本上是永久有效</p>
+</li>
+<li><p>第6个字段：密码到期前的警告天数（和第5个字段相比），也就说比如我们在第5个字段设置了一个密码有效期，比如10天，然后我们这个字段设置是7，那么就是还剩7天到期的时候，就会有警告了。</p>
+</li>
+<li><p>第7个字段：密码过期后的宽限天数（和第5个字段相比）<br>0代表密码过期后立即失效，-1代表永远不会失效</p>
+</li>
+<li><p>第8个字段：账号失效的时间（要用时间戳表示），如果这个字段设置了失效时间，前面设置的有效期就没用了。</p>
+</li>
+<li><p>第9个字段：保留</p>
+</li>
 </ul>
-<h5 id="2-暴力破解"><a href="#2-暴力破解" class="headerlink" title="2)暴力破解"></a>2)暴力破解</h5><p>手工尝试弱口令不行之后,可以结合字典与工具进行暴力破解,关键是拥有一个强大的字典,一个好用的工具</p>
-<p>使用Burpsuite工具的intruder模块进行爆破,示例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br>if (isset($_GET[&#x27;username&#x27;]) &amp;&amp; isset($_GET[&#x27;password&#x27;]))&#123;<br>    if ($_GET[&#x27;username&#x27;] == &#x27;admin&#x27; &amp;&amp; $_GET[&#x27;password&#x27;] == &#x27;admin&#x27;)&#123;<br>        echo &quot;ok 登陆成功&quot;;<br>    &#125;<br>    else&#123;<br>        echo &quot;登陆失败,请重试&quot;;<br>    &#125;<br>&#125;<br><br>?&gt;<br>&lt;!DOCTYPE html&gt;<br>&lt;html lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-8&quot;&gt;<br>    &lt;title&gt;Title&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;form action=&quot;./login_brute.php&quot;&gt;<br>    用户名:&lt;input name=&quot;username&quot;&gt;<br>    密码:&lt;input name=&quot;password&quot;&gt;<br>    &lt;button value=&quot;submit&quot;&gt;提交&lt;/button&gt;<br>&lt;/form&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<p>3./etc/group</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">root:x:0:</span><br><span class="hljs-section">用户组名称:用户组密码:GID:用户列表</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="image-20221022095426081.png" srcset="/img/loading.gif" lazyload></p>
-<h6 id="3-验证码安全问题"><a href="#3-验证码安全问题" class="headerlink" title="3)验证码安全问题"></a>3)验证码安全问题</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs">验证码前端可读<br>验证码前端可控<br>验证码前端验证<br>验证码可重复使用<br>验证码可爆破<br>验证码可被OCR识别<br>验证码和业务数据分别提交<br></code></pre></td></tr></table></figure>
+<h2 id="三-Linux用户管理命令"><a href="#三-Linux用户管理命令" class="headerlink" title="三.Linux用户管理命令"></a>三.Linux用户管理命令</h2><p>1.添加用户</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">useradd  <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
 
-
-
-<h6 id="4-接收端前端可控"><a href="#4-接收端前端可控" class="headerlink" title="4)接收端前端可控"></a>4)接收端前端可控</h6><p>修改回显包绕过验证:修改密码需要 手机\邮箱 验证码，可以用Burpsuite拦截响应包,修改响应包参数内容进行绕过(例如:no -&gt; yes   /  0 -&gt; 1)</p>
-<h6 id="5-重置凭证未校验"><a href="#5-重置凭证未校验" class="headerlink" title="5)重置凭证未校验"></a>5)重置凭证未校验</h6><p>手机号、验证码、用户未统一验证问题</p>
-<h6 id="6-任意用户密码修改"><a href="#6-任意用户密码修改" class="headerlink" title="6)任意用户密码修改"></a>6)任意用户密码修改</h6><ul>
-<li>注册一个126邮箱测试帐号</li>
-</ul>
-<p>注册成功后会跳转到手机绑定的安全提示上：<a target="_blank" rel="noopener" href="http://security.mail.126.com/mobileserv/mbp.do?uid=test@126.com&amp;backurl=">http://security.mail.126.com/mobileserv/mbp.do?uid=test@126.com&amp;backurl=</a></p>
+<p>参数:</p>
 <ul>
-<li>将uid修改为其他任意用户的邮箱</li>
+<li><p>-u UID    #指定 UID，这个 UID 必须是大于等于500，并没有其他用户占用的 UID </p>
+</li>
+<li><p>-g GID/GROUPNAME    #指定默认组，可以是 GID 或者 GROUPNAME，同样也必须真实存在 </p>
+</li>
+<li><p>-G GROUPS    #指定额外组 </p>
+</li>
+<li><p>-c COMMENT    #指定用户的注释信息 </p>
+</li>
+<li><p>-d PATH    #指定用户的家目录 </p>
+</li>
+<li><p>-s SHELL    #指定用户的默认 shell，最好是在 /etc/shells 中存在的路径 </p>
+</li>
+<li><p>-s /sbin/nologin    #该用户不能登录，还记得我们上面说到的系统用户不能登录吧？我们可以看到系统用户的 shell 字段也是 /sbin/nologin </p>
+</li>
+<li><p>echo $SHELL     #查看当前用户的 shell 类型 </p>
+</li>
+<li><p>-M  USERNAME    #创建用户但不创建家目录 </p>
+<p>如果用户没有家目录，那么不能切换到该用户 </p>
+</li>
 </ul>
-<p>填入攻击者自己的手机号码，将收到短信，填入确认码，号码绑定成功。</p>
+<p>2.删除用户</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">userdel <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<p>​     -r     #删除用户的同时删除用户家目录</p>
+<p>3.显示账户属性信息</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">id <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
 <ul>
-<li>重置密码</li>
+<li>id -g USERNAME：显示默认组ID </li>
+<li>id -G USERNAME：显示附加组ID</li>
+<li>id -u USERNAME：显示UID </li>
+<li>id -n -g/-G/-U：显示默认组/附加组/用户的名称 </li>
 </ul>
-<p>此时其他任意用户的邮箱已经被越权绑定了密保手机，然后走正常的密码取回流程，通过手机号重置密码，修改密码成功。</p>
-<h6 id="7-越权访问"><a href="#7-越权访问" class="headerlink" title="7)越权访问"></a>7)越权访问</h6><p>越权访问（Broken Access Control, 简称BAC）。顾名思义，这类漏洞是指应用在检查授权（Authorization）时存在纰漏，使得攻击者可以利用一些方式绕过权限检查，访问或者操作到原本无权访问的代码或内容。越权漏洞的成因主要是因为开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">平行越权：权限类型不变，ID改变<br>垂直越权：ID不变，权限类型改变<br>交叉越权：既改变ID，也改变权限<br></code></pre></td></tr></table></figure>
+<p>4.修改用户信息</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">usermod <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
 
+<p>参数:</p>
+<p> -G GROUPS ：改变用户的附加组，会完全替换原有的附加组 </p>
+<p> -a -G GROUPS ：在原有附加组的基础上追加附加组 </p>
+<p> -d PATH ：修改家目录。修改后原先家目录中的文件不能访问了，因为在当前的家目录中并不存在这些文件。 </p>
+<p> -l NEWNAME ：改变用户名</p>
+<p>-L    #锁定用户  检查是否配置成功,xshell连接不成功</p>
+<p>-U    #解锁用户</p>
+<p>5.passwd</p>
+<p>参数:</p>
+<p>-l：锁定用户账号（root only）<br>        -u：解锁用户账号（root only）<br>        -d：删除用户密码。用户密码删除后不能登录。</p>
+<p>6.添加组</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">groupadd <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
 
+<p>参数:</p>
+<p>-g GID GROUPNAME：指定GID</p>
+<p>-r  GROUPNAME：添加一个系统用户组（-r 也适用于 useradd）</p>
+<p>7.删除组</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">groupdel</span><span class="hljs-meta"> [name]</span><br></code></pre></td></tr></table></figure>
 
-<h6 id="8-数据遍历"><a href="#8-数据遍历" class="headerlink" title="8)数据遍历"></a>8)数据遍历</h6><p>通过登录一个用户之后,去遍历用户ID,可以访问到不同用户的数据信息</p>
-<h6 id="9-订单金额修改"><a href="#9-订单金额修改" class="headerlink" title="9)订单金额修改"></a>9)订单金额修改</h6><p>①可以修改数量是否可以修改为负数</p>
-<p>②商品价格是否可以修改为负数</p>
-<p>③运费是否可以修改为负数</p>
-<p>④订单跳转接口是否可以修改支付金额，是否可以直接跳过交易成功环节</p>
-<p>示例忘记密码:</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">思路:<br>存在账户(admin44),点击找回密码,输入相关信息,之后下一步.<br>在验证码中随便输入,然后开启抓包,点击下一步<br>抓到包之后,抓一个回应包<br>将回应包的 <span class="hljs-literal">no</span> 修改称为 <span class="hljs-literal">yes</span> 跳过验证<br>然后放包取消拦截,回到页面,点击下一步可以直接进行设置新密码<br></code></pre></td></tr></table></figure>
+<p>8.给组加密码</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">gpasswd</span><span class="hljs-meta"> [name]</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="image-20221019112640985.png" srcset="/img/loading.gif" lazyload></p>
+<p>9.显示当前用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">whoami</span><br></code></pre></td></tr></table></figure>
+
+<p>10.查看登录用户正在使用的进程信息</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">w</span><br></code></pre></td></tr></table></figure>
+
+<p>11.用于不同用户间的切换</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">su</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<p>-l 登录并改变到所切换到的用户环境</p>
+<p>-c 执行一个命令然后退出所切换到的用户环境</p>
+<p>su 默认切换到root</p>
+<h2 id="四-etc-skel目录🐱‍🐉🐱‍🐉🐱‍🐉"><a href="#四-etc-skel目录🐱‍🐉🐱‍🐉🐱‍🐉" class="headerlink" title="四./etc/skel目录🐱‍🐉🐱‍🐉🐱‍🐉"></a>四./etc/skel目录🐱‍🐉🐱‍🐉🐱‍🐉</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/</span>skel 目录(可以隐藏后门,只要创建用户就会留有后门)<br></code></pre></td></tr></table></figure>
+
+<p>/etc/skel目录是用来存放新用户环境变量文件的目录，当我们添加新用户时，这个目录下的所有文件会自动被复制到新添加的用户的家目录下：<br>默认情况下，/etc/skel目录下的所有文件都是隐藏文件（以.点开头的文件）；通过修改，添加，删除/etc/skel目录下的文件，我们可为新创建<br>的用户提供统一的，标准的，初始化用户环境。</p>
 
                 
               </div>
@@ -336,7 +400,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/">#渗透测试基础</a>
+        <a href="/tags/Linux%E5%9F%BA%E7%A1%80/">#Linux基础</a>
       
     </div>
   
@@ -348,8 +412,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>逻辑漏洞</div>
-      <div>https://zylx77.github.io/2022/10/10/ye-wu-luo-ji-lou-dong/</div>
+      <div>Linux用户和组</div>
+      <div>https://zylx77.github.io/2022/07/22/linux-yong-hu-he-zu/</div>
     </div>
     <div class="license-meta">
       
@@ -361,7 +425,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月10日</div>
+          <div>2022年7月22日</div>
         </div>
       
       
@@ -393,9 +457,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/18/ren-yi-ming-ling-zhi-xing/" title="任意命令执行">
+                      <a href="/2022/07/24/linux-wen-jian-shu-xing-he-quan-xian/" title="Linux基础知识">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">任意命令执行</span>
+                        <span class="hidden-mobile">Linux基础知识</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -403,7 +467,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/24/linux-wen-jian-shu-xing-he-quan-xian/" title="Linux基础知识">
+                      <a href="/2022/07/20/linux-ji-chu-zhi-shi/" title="Linux基础知识">
                         <span class="hidden-mobile">Linux基础知识</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>

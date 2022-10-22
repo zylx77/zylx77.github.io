@@ -16,24 +16,24 @@
   <meta name="author" content="Gnguyd">
   <meta name="keywords" content="">
   
-    <meta name="description" content="业务逻辑漏洞介绍逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。 类型1234567891.弱口令2.暴力破解3.验证码安全问题4.接收端前端可控5.重置凭证未校验6.任意用户密码修改7.越权访问8.数据遍历9.订单金额修改    1)弱口令弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。  例如：abc、123、12345">
+    <meta name="description" content="Linux文件属性和权限一.文件存取访问身份有三种身份:用户 &#x2F;用户组&#x2F;其他 二.文件属性我们在用ls列举出当前工作目录下的文件时，显示的只是文件或目录名，要想显示属性，使用ls -l，要列举出隐藏文件，使用ls -al。 文件种类以及其属性表示-：一般文件d：目录文件l：链接文件b：块设备文件，即一些存储数据以提供系统随机访问的接口设备，如硬盘、软盘等c：字符设备文件，即一些串行端口的接口设备，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逻辑漏洞">
-<meta property="og:url" content="https://zylx77.github.io/2022/10/10/ye-wu-luo-ji-lou-dong/index.html">
+<meta property="og:title" content="Linux基础知识">
+<meta property="og:url" content="https://zylx77.github.io/2022/07/24/linux-wen-jian-shu-xing-he-quan-xian/index.html">
 <meta property="og:site_name" content="Zylx77">
-<meta property="og:description" content="业务逻辑漏洞介绍逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。 类型1234567891.弱口令2.暴力破解3.验证码安全问题4.接收端前端可控5.重置凭证未校验6.任意用户密码修改7.越权访问8.数据遍历9.订单金额修改    1)弱口令弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。  例如：abc、123、12345">
+<meta property="og:description" content="Linux文件属性和权限一.文件存取访问身份有三种身份:用户 &#x2F;用户组&#x2F;其他 二.文件属性我们在用ls列举出当前工作目录下的文件时，显示的只是文件或目录名，要想显示属性，使用ls -l，要列举出隐藏文件，使用ls -al。 文件种类以及其属性表示-：一般文件d：目录文件l：链接文件b：块设备文件，即一些存储数据以提供系统随机访问的接口设备，如硬盘、软盘等c：字符设备文件，即一些串行端口的接口设备，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zylx77.github.io/img/avatar.png">
-<meta property="article:published_time" content="2022-10-10T15:51:42.000Z">
-<meta property="article:modified_time" content="2022-10-22T05:36:37.107Z">
+<meta property="og:image" content="https://zylx77.github.io/img/Linux.png">
+<meta property="article:published_time" content="2022-07-24T04:24:59.000Z">
+<meta property="article:modified_time" content="2022-10-22T05:42:36.432Z">
 <meta property="article:author" content="Gnguyd">
-<meta property="article:tag" content="渗透测试基础">
+<meta property="article:tag" content="Linux基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zylx77.github.io/img/avatar.png">
+<meta name="twitter:image" content="https://zylx77.github.io/img/Linux.png">
   
   
   
-  <title>逻辑漏洞 - Zylx77</title>
+  <title>Linux基础知识 - Zylx77</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="逻辑漏洞"></span>
+            <span id="subtitle" data-typed-text="Linux基础知识"></span>
           
         </div>
 
@@ -209,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-10 23:51" pubdate>
-          2022年10月10日 晚上
+        <time datetime="2022-07-24 12:24" pubdate>
+          2022年7月24日 中午
         </time>
       </span>
     
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          18 分钟
+          17 分钟
         
       </span>
     
@@ -270,60 +270,65 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">逻辑漏洞</h1>
+            <h1 style="display: none">Linux基础知识</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="业务逻辑漏洞"><a href="#业务逻辑漏洞" class="headerlink" title="业务逻辑漏洞"></a>业务逻辑漏洞</h1><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。</p>
-<h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs">1.弱口令<br>2.暴力破解<br>3.验证码安全问题<br>4.接收端前端可控<br>5.重置凭证未校验<br>6.任意用户密码修改<br>7.越权访问<br>8.数据遍历<br>9.订单金额修改<br></code></pre></td></tr></table></figure>
+                <h1 id="Linux文件属性和权限"><a href="#Linux文件属性和权限" class="headerlink" title="Linux文件属性和权限"></a>Linux文件属性和权限</h1><h2 id="一-文件存取访问身份"><a href="#一-文件存取访问身份" class="headerlink" title="一.文件存取访问身份"></a>一.文件存取访问身份</h2><p>有三种身份:用户 /用户组/其他</p>
+<h2 id="二-文件属性"><a href="#二-文件属性" class="headerlink" title="二.文件属性"></a>二.文件属性</h2><p>我们在用ls列举出当前工作目录下的文件时，显示的只是文件或目录名，要想显示属性，使用ls -l，要列举出隐藏文件，使用ls -al。</p>
+<p>文件种类以及其属性表示<br>-：一般文件<br>d：目录文件<br>l：链接文件<br>b：块设备文件，即一些存储数据以提供系统随机访问的接口设备，如硬盘、软盘等<br>c：字符设备文件，即一些串行端口的接口设备，如鼠标、键盘等</p>
+<h2 id="三-文件属性的更改"><a href="#三-文件属性的更改" class="headerlink" title="三.文件属性的更改"></a>三.文件属性的更改</h2><p>1.改变文件所有者chown</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chown</span> [-R] 账户名称  文件或目录<br><span class="hljs-comment">#要更改目录下所有子目录或文件的所有者，加上-R参数，代表进行递归更改。</span><br></code></pre></td></tr></table></figure>
+
+<p>2.改变文件所属用户组chgrp</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chgrp</span> [-R] 用户组 文件或目录<br><span class="hljs-comment">#要更改目录下所有子目录或文件的所有者，加上-R参数，代表进行递归更改。</span><br></code></pre></td></tr></table></figure>
+
+<p>3.文件属性需要修改的常见场景</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">文件的复制<br><span class="hljs-keyword">cp</span> 源文件 目标文件<br></code></pre></td></tr></table></figure>
 
 
 
-<h5 id="1-弱口令"><a href="#1-弱口令" class="headerlink" title="1)弱口令"></a>1)弱口令</h5><p>弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。</p>
-<ul>
-<li>例如：abc、123、123456、111111、admin、guest、test等 </li>
-<li>除此之外，纯数字以及纯字母并且密码长度小于6位的口令也被称之为弱口令，理想情况下，以此作为密码的口令暴力破解工具只需要半天的时间就能成功破解密码。</li>
-<li>在允许社会工程学攻击的情况下，密码中仅带有与自身相关的信息也可以称之为弱口令，如受害者为王伟，通过简单的社工信息收集到生日为19920801 那么以wangwei123、wangwei19920801、ww19920801、WangWei123此类的密码均被认为是弱口令。</li>
-<li>另外，企业、CMS以及系统服务的默认口令也被认为是弱口令的一种。</li>
-</ul>
-<h5 id="2-暴力破解"><a href="#2-暴力破解" class="headerlink" title="2)暴力破解"></a>2)暴力破解</h5><p>手工尝试弱口令不行之后,可以结合字典与工具进行暴力破解,关键是拥有一个强大的字典,一个好用的工具</p>
-<p>使用Burpsuite工具的intruder模块进行爆破,示例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br>if (isset($_GET[&#x27;username&#x27;]) &amp;&amp; isset($_GET[&#x27;password&#x27;]))&#123;<br>    if ($_GET[&#x27;username&#x27;] == &#x27;admin&#x27; &amp;&amp; $_GET[&#x27;password&#x27;] == &#x27;admin&#x27;)&#123;<br>        echo &quot;ok 登陆成功&quot;;<br>    &#125;<br>    else&#123;<br>        echo &quot;登陆失败,请重试&quot;;<br>    &#125;<br>&#125;<br><br>?&gt;<br>&lt;!DOCTYPE html&gt;<br>&lt;html lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-8&quot;&gt;<br>    &lt;title&gt;Title&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;form action=&quot;./login_brute.php&quot;&gt;<br>    用户名:&lt;input name=&quot;username&quot;&gt;<br>    密码:&lt;input name=&quot;password&quot;&gt;<br>    &lt;button value=&quot;submit&quot;&gt;提交&lt;/button&gt;<br>&lt;/form&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="四、文件权限"><a href="#四、文件权限" class="headerlink" title="四、文件权限"></a>四、文件权限</h2><p>1.文件权限含义</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs lua">文件权限三个为一组，均为“rwx”三个参数的组合<br>r：<span class="hljs-built_in">read</span>代表可读<br>w：<span class="hljs-built_in">write</span>代表可写<br>x：<span class="hljs-built_in">execute</span>代表可执行<br></code></pre></td></tr></table></figure>
 
-<p><img src="image-20221022095426081.png" srcset="/img/loading.gif" lazyload></p>
-<h6 id="3-验证码安全问题"><a href="#3-验证码安全问题" class="headerlink" title="3)验证码安全问题"></a>3)验证码安全问题</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs">验证码前端可读<br>验证码前端可控<br>验证码前端验证<br>验证码可重复使用<br>验证码可爆破<br>验证码可被OCR识别<br>验证码和业务数据分别提交<br></code></pre></td></tr></table></figure>
+<p>2.文件权限的数字表示</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs llvm">三个权限的位置不会改变，可以使用数字来代表各个权限<br>r：<span class="hljs-number">4</span><br>w：<span class="hljs-number">2</span><br><span class="hljs-keyword">x</span>：<span class="hljs-number">1</span><br>每种身份的权限为这三个权限的和<br></code></pre></td></tr></table></figure>
 
+<p>3.文件权限的修改</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-number">1</span>.数字类型的修改<br>chmod <span class="hljs-selector-attr">[-R]</span> number 文件或目录<br>-R：进行递归修改，连同子目录下的所有文件都会更改<br><br><span class="hljs-number">2</span>.字符类型的修改<br>有user、group、others三种身份，用u、g、o来代表，<span class="hljs-selector-tag">a</span>代表全部的身份<br></code></pre></td></tr></table></figure>
 
-
-<h6 id="4-接收端前端可控"><a href="#4-接收端前端可控" class="headerlink" title="4)接收端前端可控"></a>4)接收端前端可控</h6><p>修改回显包绕过验证:修改密码需要 手机\邮箱 验证码，可以用Burpsuite拦截响应包,修改响应包参数内容进行绕过(例如:no -&gt; yes   /  0 -&gt; 1)</p>
-<h6 id="5-重置凭证未校验"><a href="#5-重置凭证未校验" class="headerlink" title="5)重置凭证未校验"></a>5)重置凭证未校验</h6><p>手机号、验证码、用户未统一验证问题</p>
-<h6 id="6-任意用户密码修改"><a href="#6-任意用户密码修改" class="headerlink" title="6)任意用户密码修改"></a>6)任意用户密码修改</h6><ul>
-<li>注册一个126邮箱测试帐号</li>
-</ul>
-<p>注册成功后会跳转到手机绑定的安全提示上：<a target="_blank" rel="noopener" href="http://security.mail.126.com/mobileserv/mbp.do?uid=test@126.com&amp;backurl=">http://security.mail.126.com/mobileserv/mbp.do?uid=test@126.com&amp;backurl=</a></p>
-<ul>
-<li>将uid修改为其他任意用户的邮箱</li>
-</ul>
-<p>填入攻击者自己的手机号码，将收到短信，填入确认码，号码绑定成功。</p>
-<ul>
-<li>重置密码</li>
-</ul>
-<p>此时其他任意用户的邮箱已经被越权绑定了密保手机，然后走正常的密码取回流程，通过手机号重置密码，修改密码成功。</p>
-<h6 id="7-越权访问"><a href="#7-越权访问" class="headerlink" title="7)越权访问"></a>7)越权访问</h6><p>越权访问（Broken Access Control, 简称BAC）。顾名思义，这类漏洞是指应用在检查授权（Authorization）时存在纰漏，使得攻击者可以利用一些方式绕过权限检查，访问或者操作到原本无权访问的代码或内容。越权漏洞的成因主要是因为开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">平行越权：权限类型不变，ID改变<br>垂直越权：ID不变，权限类型改变<br>交叉越权：既改变ID，也改变权限<br></code></pre></td></tr></table></figure>
+<p><img src="image-20220730185305664.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="五、权限掩码umask（umask用来设置默认权限的）"><a href="#五、权限掩码umask（umask用来设置默认权限的）" class="headerlink" title="五、权限掩码umask（umask用来设置默认权限的）"></a>五、权限掩码umask（umask用来设置默认权限的）</h2><p>在linux下我们查看的方式有两种：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">一种可以直接输入<span class="hljs-built_in">umask</span>，就可以看到数字形态的权限设置分数，<br>一种则是加-S（Symbolic）参数，就能以符号类型的方式来显示出权限了。<br></code></pre></td></tr></table></figure>
 
 
 
-<h6 id="8-数据遍历"><a href="#8-数据遍历" class="headerlink" title="8)数据遍历"></a>8)数据遍历</h6><p>通过登录一个用户之后,去遍历用户ID,可以访问到不同用户的数据信息</p>
-<h6 id="9-订单金额修改"><a href="#9-订单金额修改" class="headerlink" title="9)订单金额修改"></a>9)订单金额修改</h6><p>①可以修改数量是否可以修改为负数</p>
-<p>②商品价格是否可以修改为负数</p>
-<p>③运费是否可以修改为负数</p>
-<p>④订单跳转接口是否可以修改支付金额，是否可以直接跳过交易成功环节</p>
-<p>示例忘记密码:</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">思路:<br>存在账户(admin44),点击找回密码,输入相关信息,之后下一步.<br>在验证码中随便输入,然后开启抓包,点击下一步<br>抓到包之后,抓一个回应包<br>将回应包的 <span class="hljs-literal">no</span> 修改称为 <span class="hljs-literal">yes</span> 跳过验证<br>然后放包取消拦截,回到页面,点击下一步可以直接进行设置新密码<br></code></pre></td></tr></table></figure>
+<h2 id="六，特殊权限"><a href="#六，特殊权限" class="headerlink" title="六，特殊权限"></a>六，特殊权限</h2><p>1.s权限</p>
+<p>suid</p>
+<p>当s权限位于可执行命令所有者的位置时，其他用户执行时将具有所有者的权限</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vim">接下来我们给<span class="hljs-keyword">vim</span>命令的所有者位置增加一个s权限：<br># chmod <span class="hljs-keyword">u</span>+s $(which <span class="hljs-keyword">vim</span>)<br># <span class="hljs-keyword">ll</span> $(which <span class="hljs-keyword">vim</span>)<br>-rwsr-xr-<span class="hljs-keyword">x</span>. <span class="hljs-number">1</span> root root <span class="hljs-number">2289600</span> <span class="hljs-number">1</span>月 <span class="hljs-number">30</span> <span class="hljs-number">2014</span> /usr/bin/<span class="hljs-keyword">vim</span><br>此时用其他用户可以使用<span class="hljs-keyword">vim</span>往/<span class="hljs-keyword">opt</span>/test.txt写内容。<br></code></pre></td></tr></table></figure>
 
-<p><img src="image-20221019112640985.png" srcset="/img/loading.gif" lazyload></p>
+<p>sgid</p>
+<p>s位于目录的所属组位置时，不管哪个用户在该目录下创建文件或目录，都会继承该目录的所属组</p>
+<p>2.T权限<br>粘滞位<br>t位于目录的other的位置时，这时除了所有者和root之外，其他的用户即使有权限，也无法删除该目录下的文件</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs elixir">[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># mkdir /opt/test2</span><br>[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># chmod 777 /opt/test2</span><br>[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># touch /opt/test2/test</span><br>[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># chmod 777 /opt/test2/test</span><br>[tom<span class="hljs-variable">@www</span> ~]<span class="hljs-variable">$ </span>rm -rf /opt/test2/test<br>[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># chmod o+t /opt/test2</span><br>[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># touch /opt/test2/test</span><br>[root<span class="hljs-variable">@www</span> ~]<span class="hljs-comment"># chmod 777 /opt/test2/test</span><br>[tom<span class="hljs-variable">@www</span> ~]<span class="hljs-variable">$ </span>rm -rf /opt/test2/test<br><span class="hljs-symbol">rm:</span> 无法删除<span class="hljs-string">&quot;/opt/test2/test&quot;</span>: 不允许的操作<br>通过这个例子，就能理解t位于目录other位置的权限了。<br></code></pre></td></tr></table></figure>
+
+
+
+<p>chmod 7777 file<br>后面三个权限是原本的权限，前面的7代表的是：<br>u+s ——–&gt; 4<br>g+s ——–&gt; 2<br>o+t ——–&gt; 1</p>
+<h2 id="七、文件属性"><a href="#七、文件属性" class="headerlink" title="七、文件属性"></a>七、文件属性</h2><p> chattr 语法：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs excel">chattr [ -RVf ] [ -v version ] [ <span class="hljs-built_in">mode</span> ] files...<br><br>参数<span class="hljs-symbol">:</span><br>+ <span class="hljs-symbol">:</span> 在原有参数设定基础上，追加参数<br>- ：在原有参数设定基础上，移除参数<br>= ：更新为指定参数设定<br>A ：文件或目录的 atime (access <span class="hljs-built_in">time</span>)不可被修改(modified),可以有效预防例如手提电脑磁盘I/O错误的发生<br>a ：即append，设定该参数后，只能向文件中添加数据，而不能删除；<br>c ：即compresse，设定文件是否经压缩后再存储。读取时需要经过自动解压操作。<br>i ：设定文件不能被删除、改名、设定链接关系，同时不能写入或新增内容；对目录<br>s ：保密性地删除文件或目录，即硬盘空间被全部收回<br>u ：与s相反，当设定为u时，数据内容其实还存在磁盘中，可以用于undeletion.<br></code></pre></td></tr></table></figure>
+
+<p>示例:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">chattr +<span class="hljs-selector-tag">i</span> <span class="hljs-number">1</span><span class="hljs-selector-class">.txt</span>  固定<br>chattr -<span class="hljs-selector-tag">i</span> <span class="hljs-number">1</span><span class="hljs-selector-class">.txt</span>  解除<br></code></pre></td></tr></table></figure>
+
+
+
+<p>lsattr语法:</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">lsattr</span> <span class="hljs-selector-attr">[ -RVadv ]</span> <span class="hljs-selector-attr">[ files... ]</span><br><br>参数:<br><span class="hljs-selector-tag">a</span> : 列出目录下的所有文件，包括隐藏文件<br><span class="hljs-selector-tag">d</span> : 查看本目录自身的权限<br></code></pre></td></tr></table></figure>
+
+
 
                 
               </div>
@@ -336,7 +341,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/">#渗透测试基础</a>
+        <a href="/tags/Linux%E5%9F%BA%E7%A1%80/">#Linux基础</a>
       
     </div>
   
@@ -348,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>逻辑漏洞</div>
-      <div>https://zylx77.github.io/2022/10/10/ye-wu-luo-ji-lou-dong/</div>
+      <div>Linux基础知识</div>
+      <div>https://zylx77.github.io/2022/07/24/linux-wen-jian-shu-xing-he-quan-xian/</div>
     </div>
     <div class="license-meta">
       
@@ -361,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月10日</div>
+          <div>2022年7月24日</div>
         </div>
       
       
@@ -393,9 +398,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/18/ren-yi-ming-ling-zhi-xing/" title="任意命令执行">
+                      <a href="/2022/10/10/ye-wu-luo-ji-lou-dong/" title="逻辑漏洞">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">任意命令执行</span>
+                        <span class="hidden-mobile">逻辑漏洞</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -403,8 +408,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/24/linux-wen-jian-shu-xing-he-quan-xian/" title="Linux基础知识">
-                        <span class="hidden-mobile">Linux基础知识</span>
+                      <a href="/2022/07/22/linux-yong-hu-he-zu/" title="Linux用户和组">
+                        <span class="hidden-mobile">Linux用户和组</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
