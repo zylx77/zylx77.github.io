@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Linux用户和组</title>
+    <link href="/2022/10/22/linux-yong-hu-he-zu/"/>
+    <url>/2022/10/22/linux-yong-hu-he-zu/</url>
+    
+    <content type="html"><![CDATA[<h1 id="linux用户和组"><a href="#linux用户和组" class="headerlink" title="linux用户和组"></a>linux用户和组</h1><h2 id="一-Linux用户分类"><a href="#一-Linux用户分类" class="headerlink" title="一.Linux用户分类"></a>一.Linux用户分类</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">1、root用户:权限最高.</span><br>操作其他用户的文件，控制可执行程序管理硬件设备，管理文件权限<br><br><span class="hljs-section">2、系统用户:虚拟用户、伪用户或者假用户。</span><br>这类用户不能登录Linux系统。<br>系统进程运行身份。<br>系统用户:<br>ID为1-999，（CentOS7之前为1-499）<br><br><span class="hljs-section">3、普通用户:</span><br>root用户创建，能够使用大部分资源，一些特定权限受限。<br>ID为1000-65535<br></code></pre></td></tr></table></figure><h2 id="二-Linux用户登录过程"><a href="#二-Linux用户登录过程" class="headerlink" title="二.Linux用户登录过程"></a>二.Linux用户登录过程</h2><p>1./etc/passwd</p><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br>账户<span class="hljs-symbol">:</span>密码占位符<span class="hljs-symbol">:UID</span><span class="hljs-symbol">:GID</span><span class="hljs-symbol">:</span>账户信息<span class="hljs-symbol">:</span>家目录<span class="hljs-symbol">:</span>登录shell<br></code></pre></td></tr></table></figure><p>家目录:存放用户自己的数据</p><p>2./etc/shadow</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">root</span>:$<span class="hljs-number">6</span>$sVI78ZA4$QQ9jzXKyhjEpsjz6I5lsPAQcNNamPxivy25rnhK1UZ/<span class="hljs-number">1</span>kv07qUrOlN2ZalIpAZwowkEHlk5/<span class="hljs-number">40</span>wPZ8uDioAi41:<span class="hljs-number">17995</span>:<span class="hljs-number">0</span>:<span class="hljs-number">99999</span>:<span class="hljs-number">7</span>:::<br></code></pre></td></tr></table></figure><ul><li><p>第1个字段：用户名</p></li><li><p>第2个字段：加密密码，加密算法是SHA512加密算法，如果是“！！”“*”代表没有密码，不能登录</p></li><li><p>第3个字段：密码最后一次修改日期，我们看到root的这个字段是17995，这个是使用1970年1月1日作为标准时间，每过一天，时间戳+1</p></li><li><p>第4个字段：两次密码的修改间隔时间（和第3个字段相比），就是说多少天后可以修改这个密码，我们看到root用户的这个字段是0</p></li><li><p>第5个字段：密码有效期（和第3个字段相比），我们看到root用户的这个字段是99999，基本上是永久有效</p></li><li><p>第6个字段：密码到期前的警告天数（和第5个字段相比），也就说比如我们在第5个字段设置了一个密码有效期，比如10天，然后我们这个字段设置是7，那么就是还剩7天到期的时候，就会有警告了。</p></li><li><p>第7个字段：密码过期后的宽限天数（和第5个字段相比）<br>0代表密码过期后立即失效，-1代表永远不会失效</p></li><li><p>第8个字段：账号失效的时间（要用时间戳表示），如果这个字段设置了失效时间，前面设置的有效期就没用了。</p></li><li><p>第9个字段：保留</p></li></ul><p>3./etc/group</p><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">root:x:0:</span><br><span class="hljs-section">用户组名称:用户组密码:GID:用户列表</span><br></code></pre></td></tr></table></figure><h2 id="三-Linux用户管理命令"><a href="#三-Linux用户管理命令" class="headerlink" title="三.Linux用户管理命令"></a>三.Linux用户管理命令</h2><p>1.添加用户</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">useradd  <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure><p>参数:</p><ul><li><p>-u UID    #指定 UID，这个 UID 必须是大于等于500，并没有其他用户占用的 UID </p></li><li><p>-g GID/GROUPNAME    #指定默认组，可以是 GID 或者 GROUPNAME，同样也必须真实存在 </p></li><li><p>-G GROUPS    #指定额外组 </p></li><li><p>-c COMMENT    #指定用户的注释信息 </p></li><li><p>-d PATH    #指定用户的家目录 </p></li><li><p>-s SHELL    #指定用户的默认 shell，最好是在 /etc/shells 中存在的路径 </p></li><li><p>-s /sbin/nologin    #该用户不能登录，还记得我们上面说到的系统用户不能登录吧？我们可以看到系统用户的 shell 字段也是 /sbin/nologin </p></li><li><p>echo $SHELL     #查看当前用户的 shell 类型 </p></li><li><p>-M  USERNAME    #创建用户但不创建家目录 </p><p>如果用户没有家目录，那么不能切换到该用户 </p></li></ul><p>2.删除用户</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">userdel <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure><p>参数:</p><p>​     -r     #删除用户的同时删除用户家目录</p><p>3.显示账户属性信息</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">id <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure><p>参数:</p><ul><li>id -g USERNAME：显示默认组ID </li><li>id -G USERNAME：显示附加组ID</li><li>id -u USERNAME：显示UID </li><li>id -n -g/-G/-U：显示默认组/附加组/用户的名称 </li></ul><p>4.修改用户信息</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">usermod <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure><p>参数:</p><p> -G GROUPS ：改变用户的附加组，会完全替换原有的附加组 </p><p> -a -G GROUPS ：在原有附加组的基础上追加附加组 </p><p> -d PATH ：修改家目录。修改后原先家目录中的文件不能访问了，因为在当前的家目录中并不存在这些文件。 </p><p> -l NEWNAME ：改变用户名</p><p>-L    #锁定用户  检查是否配置成功,xshell连接不成功</p><p>-U    #解锁用户</p><p>5.passwd</p><p>参数:</p><p>-l：锁定用户账号（root only）<br>        -u：解锁用户账号（root only）<br>        -d：删除用户密码。用户密码删除后不能登录。</p><p>6.添加组</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">groupadd <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure><p>参数:</p><p>-g GID GROUPNAME：指定GID</p><p>-r  GROUPNAME：添加一个系统用户组（-r 也适用于 useradd）</p><p>7.删除组</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">groupdel</span><span class="hljs-meta"> [name]</span><br></code></pre></td></tr></table></figure><p>8.给组加密码</p><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">gpasswd</span><span class="hljs-meta"> [name]</span><br></code></pre></td></tr></table></figure><p>9.显示当前用户</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">whoami</span><br></code></pre></td></tr></table></figure><p>10.查看登录用户正在使用的进程信息</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">w</span><br></code></pre></td></tr></table></figure><p>11.用于不同用户间的切换</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">su</span><br></code></pre></td></tr></table></figure><p>参数:</p><p>-l 登录并改变到所切换到的用户环境</p><p>-c 执行一个命令然后退出所切换到的用户环境</p><p>su 默认切换到root</p><h2 id="四-etc-skel目录🐱‍🐉🐱‍🐉🐱‍🐉"><a href="#四-etc-skel目录🐱‍🐉🐱‍🐉🐱‍🐉" class="headerlink" title="四./etc/skel目录🐱‍🐉🐱‍🐉🐱‍🐉"></a>四./etc/skel目录🐱‍🐉🐱‍🐉🐱‍🐉</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/</span>skel 目录(可以隐藏后门,只要创建用户就会留有后门)<br></code></pre></td></tr></table></figure><p>/etc/skel目录是用来存放新用户环境变量文件的目录，当我们添加新用户时，这个目录下的所有文件会自动被复制到新添加的用户的家目录下：<br>默认情况下，/etc/skel目录下的所有文件都是隐藏文件（以.点开头的文件）；通过修改，添加，删除/etc/skel目录下的文件，我们可为新创建<br>的用户提供统一的，标准的，初始化用户环境。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Linux基础</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SQL注入基础</title>
     <link href="/2022/10/20/sql-zhu-ru/"/>
     <url>/2022/10/20/sql-zhu-ru/</url>
@@ -14,7 +33,7 @@
     
     <tags>
       
-      <tag>基础知识储备</tag>
+      <tag>渗透测试基础</tag>
       
     </tags>
     
@@ -52,7 +71,7 @@
     
     <tags>
       
-      <tag>基础知识储备</tag>
+      <tag>渗透测试基础</tag>
       
     </tags>
     
@@ -71,7 +90,7 @@
     
     <tags>
       
-      <tag>基础知识储备</tag>
+      <tag>渗透测试基础</tag>
       
     </tags>
     
@@ -90,7 +109,7 @@
     
     <tags>
       
-      <tag>基础知识储备</tag>
+      <tag>Linux基础</tag>
       
     </tags>
     
