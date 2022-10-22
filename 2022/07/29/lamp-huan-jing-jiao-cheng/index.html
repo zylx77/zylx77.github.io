@@ -16,24 +16,24 @@
   <meta name="author" content="Gnguyd">
   <meta name="keywords" content="">
   
-    <meta name="description" content="业务逻辑漏洞介绍逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。 类型1234567891.弱口令2.暴力破解3.验证码安全问题4.接收端前端可控5.重置凭证未校验6.任意用户密码修改7.越权访问8.数据遍历9.订单金额修改    1)弱口令弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。  例如：abc、123、12345">
+    <meta name="description" content="搭建LAMP环境教程安装Apache服务1yum install httpd  设置开机启动1systemctl enable httpd  启动apache12345# 启动systemctl start httpd# 重启systemctl restart httpd  查看状态1systemctl status httpd  查看启动12# 查看端口netstat -tulp    安装ma">
 <meta property="og:type" content="article">
-<meta property="og:title" content="逻辑漏洞">
-<meta property="og:url" content="https://zylx77.github.io/2022/10/10/ye-wu-luo-ji-lou-dong/index.html">
+<meta property="og:title" content="LAMP环境教程">
+<meta property="og:url" content="https://zylx77.github.io/2022/07/29/lamp-huan-jing-jiao-cheng/index.html">
 <meta property="og:site_name" content="Zylx77">
-<meta property="og:description" content="业务逻辑漏洞介绍逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。 类型1234567891.弱口令2.暴力破解3.验证码安全问题4.接收端前端可控5.重置凭证未校验6.任意用户密码修改7.越权访问8.数据遍历9.订单金额修改    1)弱口令弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。  例如：abc、123、12345">
+<meta property="og:description" content="搭建LAMP环境教程安装Apache服务1yum install httpd  设置开机启动1systemctl enable httpd  启动apache12345# 启动systemctl start httpd# 重启systemctl restart httpd  查看状态1systemctl status httpd  查看启动12# 查看端口netstat -tulp    安装ma">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zylx77.github.io/img/avatar.png">
-<meta property="article:published_time" content="2022-10-10T15:51:42.000Z">
-<meta property="article:modified_time" content="2022-10-22T05:36:37.107Z">
+<meta property="og:image" content="https://zylx77.github.io/img/env.png">
+<meta property="article:published_time" content="2022-07-29T13:38:20.000Z">
+<meta property="article:modified_time" content="2022-10-22T05:54:21.837Z">
 <meta property="article:author" content="Gnguyd">
-<meta property="article:tag" content="渗透测试基础">
+<meta property="article:tag" content="环境配置">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://zylx77.github.io/img/avatar.png">
+<meta name="twitter:image" content="https://zylx77.github.io/img/env.png">
   
   
   
-  <title>逻辑漏洞 - Zylx77</title>
+  <title>LAMP环境教程 - Zylx77</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="逻辑漏洞"></span>
+            <span id="subtitle" data-typed-text="LAMP环境教程"></span>
           
         </div>
 
@@ -209,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-10 23:51" pubdate>
-          2022年10月10日 晚上
+        <time datetime="2022-07-29 21:38" pubdate>
+          2022年7月29日 晚上
         </time>
       </span>
     
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          1.9k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          18 分钟
+          17 分钟
         
       </span>
     
@@ -270,60 +270,96 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">逻辑漏洞</h1>
+            <h1 style="display: none">LAMP环境教程</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="业务逻辑漏洞"><a href="#业务逻辑漏洞" class="headerlink" title="业务逻辑漏洞"></a>业务逻辑漏洞</h1><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>逻辑漏洞是由于程序逻辑不严或者逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误。</p>
-<h4 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs">1.弱口令<br>2.暴力破解<br>3.验证码安全问题<br>4.接收端前端可控<br>5.重置凭证未校验<br>6.任意用户密码修改<br>7.越权访问<br>8.数据遍历<br>9.订单金额修改<br></code></pre></td></tr></table></figure>
+                <h1 id="搭建LAMP环境教程"><a href="#搭建LAMP环境教程" class="headerlink" title="搭建LAMP环境教程"></a>搭建LAMP环境教程</h1><h4 id="安装Apache服务"><a href="#安装Apache服务" class="headerlink" title="安装Apache服务"></a>安装Apache服务</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">yum <span class="hljs-keyword">install</span> httpd<br></code></pre></td></tr></table></figure>
+
+<h6 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h6><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">systemctl <span class="hljs-built_in">enable</span> httpd<br></code></pre></td></tr></table></figure>
+
+<h6 id="启动apache"><a href="#启动apache" class="headerlink" title="启动apache"></a>启动apache</h6><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-comment"># 启动</span><br><span class="hljs-params">system</span>ctl start httpd<br><br><span class="hljs-comment"># 重启</span><br><span class="hljs-params">system</span>ctl restart httpd<br></code></pre></td></tr></table></figure>
+
+<h6 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h6><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">systemctl status httpd</span><br></code></pre></td></tr></table></figure>
+
+<h6 id="查看启动"><a href="#查看启动" class="headerlink" title="查看启动"></a>查看启动</h6><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 查看端口</span><br><span class="hljs-attribute">netstat</span> -tulp<br></code></pre></td></tr></table></figure>
 
 
 
-<h5 id="1-弱口令"><a href="#1-弱口令" class="headerlink" title="1)弱口令"></a>1)弱口令</h5><p>弱口令没有严格和准确的定义，通常认为容易被别人猜测到或被破解工具破解的口令均为弱口令。</p>
-<ul>
-<li>例如：abc、123、123456、111111、admin、guest、test等 </li>
-<li>除此之外，纯数字以及纯字母并且密码长度小于6位的口令也被称之为弱口令，理想情况下，以此作为密码的口令暴力破解工具只需要半天的时间就能成功破解密码。</li>
-<li>在允许社会工程学攻击的情况下，密码中仅带有与自身相关的信息也可以称之为弱口令，如受害者为王伟，通过简单的社工信息收集到生日为19920801 那么以wangwei123、wangwei19920801、ww19920801、WangWei123此类的密码均被认为是弱口令。</li>
-<li>另外，企业、CMS以及系统服务的默认口令也被认为是弱口令的一种。</li>
-</ul>
-<h5 id="2-暴力破解"><a href="#2-暴力破解" class="headerlink" title="2)暴力破解"></a>2)暴力破解</h5><p>手工尝试弱口令不行之后,可以结合字典与工具进行暴力破解,关键是拥有一个强大的字典,一个好用的工具</p>
-<p>使用Burpsuite工具的intruder模块进行爆破,示例如下</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs php+HTML">&lt;?php<br>if (isset($_GET[&#x27;username&#x27;]) &amp;&amp; isset($_GET[&#x27;password&#x27;]))&#123;<br>    if ($_GET[&#x27;username&#x27;] == &#x27;admin&#x27; &amp;&amp; $_GET[&#x27;password&#x27;] == &#x27;admin&#x27;)&#123;<br>        echo &quot;ok 登陆成功&quot;;<br>    &#125;<br>    else&#123;<br>        echo &quot;登陆失败,请重试&quot;;<br>    &#125;<br>&#125;<br><br>?&gt;<br>&lt;!DOCTYPE html&gt;<br>&lt;html lang=&quot;en&quot;&gt;<br>&lt;head&gt;<br>    &lt;meta charset=&quot;UTF-8&quot;&gt;<br>    &lt;title&gt;Title&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;form action=&quot;./login_brute.php&quot;&gt;<br>    用户名:&lt;input name=&quot;username&quot;&gt;<br>    密码:&lt;input name=&quot;password&quot;&gt;<br>    &lt;button value=&quot;submit&quot;&gt;提交&lt;/button&gt;<br>&lt;/form&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="安装mariadb"><a href="#安装mariadb" class="headerlink" title="安装mariadb"></a>安装mariadb</h4><h6 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h6><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta">yum -y install mariadb mariadb-<span class="hljs-keyword">server</span><br></code></pre></td></tr></table></figure>
 
-<p><img src="image-20221022095426081.png" srcset="/img/loading.gif" lazyload></p>
-<h6 id="3-验证码安全问题"><a href="#3-验证码安全问题" class="headerlink" title="3)验证码安全问题"></a>3)验证码安全问题</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs">验证码前端可读<br>验证码前端可控<br>验证码前端验证<br>验证码可重复使用<br>验证码可爆破<br>验证码可被OCR识别<br>验证码和业务数据分别提交<br></code></pre></td></tr></table></figure>
+<h6 id="设置开启启动"><a href="#设置开启启动" class="headerlink" title="设置开启启动"></a>设置开启启动</h6><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">systemctl <span class="hljs-built_in">enable</span> mariadb<br></code></pre></td></tr></table></figure>
+
+<h6 id="启动MariaDB"><a href="#启动MariaDB" class="headerlink" title="启动MariaDB"></a>启动MariaDB</h6><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">systemctl <span class="hljs-literal">start</span> mariadb<br></code></pre></td></tr></table></figure>
+
+<h6 id="数据库初始化配置"><a href="#数据库初始化配置" class="headerlink" title="数据库初始化配置"></a>数据库初始化配置</h6><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">mysql_secure_installation</span><br></code></pre></td></tr></table></figure>
 
 
 
-<h6 id="4-接收端前端可控"><a href="#4-接收端前端可控" class="headerlink" title="4)接收端前端可控"></a>4)接收端前端可控</h6><p>修改回显包绕过验证:修改密码需要 手机\邮箱 验证码，可以用Burpsuite拦截响应包,修改响应包参数内容进行绕过(例如:no -&gt; yes   /  0 -&gt; 1)</p>
-<h6 id="5-重置凭证未校验"><a href="#5-重置凭证未校验" class="headerlink" title="5)重置凭证未校验"></a>5)重置凭证未校验</h6><p>手机号、验证码、用户未统一验证问题</p>
-<h6 id="6-任意用户密码修改"><a href="#6-任意用户密码修改" class="headerlink" title="6)任意用户密码修改"></a>6)任意用户密码修改</h6><ul>
-<li>注册一个126邮箱测试帐号</li>
-</ul>
-<p>注册成功后会跳转到手机绑定的安全提示上：<a target="_blank" rel="noopener" href="http://security.mail.126.com/mobileserv/mbp.do?uid=test@126.com&amp;backurl=">http://security.mail.126.com/mobileserv/mbp.do?uid=test@126.com&amp;backurl=</a></p>
-<ul>
-<li>将uid修改为其他任意用户的邮箱</li>
-</ul>
-<p>填入攻击者自己的手机号码，将收到短信，填入确认码，号码绑定成功。</p>
-<ul>
-<li>重置密码</li>
-</ul>
-<p>此时其他任意用户的邮箱已经被越权绑定了密保手机，然后走正常的密码取回流程，通过手机号重置密码，修改密码成功。</p>
-<h6 id="7-越权访问"><a href="#7-越权访问" class="headerlink" title="7)越权访问"></a>7)越权访问</h6><p>越权访问（Broken Access Control, 简称BAC）。顾名思义，这类漏洞是指应用在检查授权（Authorization）时存在纰漏，使得攻击者可以利用一些方式绕过权限检查，访问或者操作到原本无权访问的代码或内容。越权漏洞的成因主要是因为开发人员在对数据进行增、删、改、查询时对客户端请求的数据过分相信而遗漏了权限的判定。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">平行越权：权限类型不变，ID改变<br>垂直越权：ID不变，权限类型改变<br>交叉越权：既改变ID，也改变权限<br></code></pre></td></tr></table></figure>
+<p>设置密码，会提示先输入密码 :</p>
+<p>Enter current password for root (enter for none):    &lt;–初次运行直接回车</p>
+<p>Set root password? [Y/n]    &lt;– 是否设置root用户密码，输入y并回车或直接回车</p>
+<p>New password:    &lt;– 设置root用户的密码</p>
+<p>Re-enter new password:    &lt;– 再输入一次你设置的密码</p>
+<p>其他配置:</p>
+<p>Remove anonymous users? [Y/n]    &lt;– 是否删除匿名用户，回车</p>
+<p>Disallow root login remotely? [Y/n]    &lt;–是否禁止root远程登录,回车,</p>
+<p>Remove test database and access to it? [Y/n]    &lt;– 是否删除test数据库，回车</p>
+<p>Reload privilege tables now? [Y/n]    &lt;– 是否重新加载权限表，回车</p>
+<p>初始化MariaDB完成，接下来测试登录</p>
+<p>mysql -uroot -p你的密码</p>
+<p>完成。</p>
+<h6 id="设置远程登录"><a href="#设置远程登录" class="headerlink" title="设置远程登录"></a>设置远程登录</h6><p>使用mysql -uroot -p密码登录后，执行命令：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">ALL</span> <span class="hljs-keyword">PRIVILEGES</span> <span class="hljs-keyword">ON</span> *.* <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;root&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED <span class="hljs-keyword">BY</span> <span class="hljs-string">&#x27;你的密码的明文&#x27;</span> <span class="hljs-keyword">WITH</span> <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">OPTION</span>;<br><br>FLUSH <span class="hljs-keyword">PRIVILEGES</span>;  <br></code></pre></td></tr></table></figure>
 
 
 
-<h6 id="8-数据遍历"><a href="#8-数据遍历" class="headerlink" title="8)数据遍历"></a>8)数据遍历</h6><p>通过登录一个用户之后,去遍历用户ID,可以访问到不同用户的数据信息</p>
-<h6 id="9-订单金额修改"><a href="#9-订单金额修改" class="headerlink" title="9)订单金额修改"></a>9)订单金额修改</h6><p>①可以修改数量是否可以修改为负数</p>
-<p>②商品价格是否可以修改为负数</p>
-<p>③运费是否可以修改为负数</p>
-<p>④订单跳转接口是否可以修改支付金额，是否可以直接跳过交易成功环节</p>
-<p>示例忘记密码:</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">思路:<br>存在账户(admin44),点击找回密码,输入相关信息,之后下一步.<br>在验证码中随便输入,然后开启抓包,点击下一步<br>抓到包之后,抓一个回应包<br>将回应包的 <span class="hljs-literal">no</span> 修改称为 <span class="hljs-literal">yes</span> 跳过验证<br>然后放包取消拦截,回到页面,点击下一步可以直接进行设置新密码<br></code></pre></td></tr></table></figure>
+<p>PS : 如果远程访问，并且数据量很大，则需要进行如下配置，否则会出现MySQL server has gone away 的</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> global <span class="hljs-attribute">max_allowed_packet</span>=1024*1024*16;<br></code></pre></td></tr></table></figure>
 
-<p><img src="image-20221019112640985.png" srcset="/img/loading.gif" lazyload></p>
+<h6 id="进入创建数据库"><a href="#进入创建数据库" class="headerlink" title="进入创建数据库"></a>进入创建数据库</h6><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">show </span>databases<span class="hljs-comment">;  查看所有数据库</span><br>create database wordpress<span class="hljs-comment">;添加数据库</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="安装php7版本"><a href="#安装php7版本" class="headerlink" title="安装php7版本"></a>安装php7版本</h4><p>安装php72w，是需要配置额外的yum源地址的，否则会报错不能找到相关软件包。</p>
+<p>php高版本的yum源地址，有两部分，其中一部分是epel-release，另外一部分来自webtatic。如果跳过epel-release的话，安装webtatic的时候，会有错误爆出。</p>
+<p>所以，这里需要的命令是：</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span>. yum install epel-release -y<br><br><span class="hljs-symbol">2 </span>. rpm -Uvh https://mirror.webtatic.<span class="hljs-keyword">com</span>/yum/el7/webtatic-release.rpm<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="清除历史版本"><a href="#清除历史版本" class="headerlink" title="清除历史版本"></a>清除历史版本</h6><p>为了防止CentOS上面发生php冲突，所以，这个命令还是先执行一下更好些。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">yum -y <span class="hljs-built_in">remove</span> php*<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="安装扩展包"><a href="#安装扩展包" class="headerlink" title="安装扩展包"></a>安装扩展包</h6><p>事实上，这里面的对应扩展库很多，这里大家一定要注意cli和fpm这两个包，而其它的相关包就看您需要了。</p>
+<p>简化版扩展://建议不使用</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">yum -y install php72w php72w-cli php72w-fpm php72w-common php72w-devel<br></code></pre></td></tr></table></figure>
+
+<p>更全的版本:</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs smali">yum -y install php72w php72w-cli php72w-fpm php72w-common php72w-devel php72w-embedded php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h6><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vi <span class="hljs-regexp">/etc/</span>php.ini<br></code></pre></td></tr></table></figure>
+
+<p>调整上传文件大小</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">upload_max_filesize</span>=<span class="hljs-number">200</span>M<br><span class="hljs-attr">post_max_size</span>=<span class="hljs-number">800</span>M<br></code></pre></td></tr></table></figure>
+
+
+
+<h6 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h6><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-params">system</span>ctl enable php-fpm.service<br><span class="hljs-params">system</span>ctl start php-fpm.service<br></code></pre></td></tr></table></figure>
+
+<p>查看php版本</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">php -v</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>进入/var/www/html/文件中将wordpress文件及其下的目录的所属者改为apache</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">chown</span> -R apache<br></code></pre></td></tr></table></figure>
+
+<p>并且将权限提升为777</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">chmod</span> -R <span class="hljs-number">777</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>通过浏览器访问”ip/wordpress”设置相关数据库和密码,此时已经搭建成功LAMP</p>
 
                 
               </div>
@@ -336,7 +372,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/">#渗透测试基础</a>
+        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">#环境配置</a>
       
     </div>
   
@@ -348,8 +384,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>逻辑漏洞</div>
-      <div>https://zylx77.github.io/2022/10/10/ye-wu-luo-ji-lou-dong/</div>
+      <div>LAMP环境教程</div>
+      <div>https://zylx77.github.io/2022/07/29/lamp-huan-jing-jiao-cheng/</div>
     </div>
     <div class="license-meta">
       
@@ -361,7 +397,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月10日</div>
+          <div>2022年7月29日</div>
         </div>
       
       
@@ -393,9 +429,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/18/ren-yi-ming-ling-zhi-xing/" title="任意命令执行">
+                      <a href="/2022/10/10/ye-wu-luo-ji-lou-dong/" title="逻辑漏洞">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">任意命令执行</span>
+                        <span class="hidden-mobile">逻辑漏洞</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -403,8 +439,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/07/29/lamp-huan-jing-jiao-cheng/" title="LAMP环境教程">
-                        <span class="hidden-mobile">LAMP环境教程</span>
+                      <a href="/2022/07/27/linux-fu-wu-ji-jin-cheng/" title="Linux服务及进程">
+                        <span class="hidden-mobile">Linux服务及进程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
