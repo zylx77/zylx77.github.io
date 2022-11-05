@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Gnguyd">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="linux用户和组一.Linux用户分类1234567891011121、root用户:权限最高.	操作其他用户的文件，控制可执行程序管理硬件设备，管理文件权限2、系统用户:虚拟用户、伪用户或者假用户。	这类用户不能登录Linux系统。	系统进程运行身份。	系统用户:			ID为1-999，（CentOS7之前为1-499）3、普通用户:	root用户创建，能够使用大部分资源，一些特定权限受限。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux用户和组">
+<meta property="og:url" content="https://zylx77.github.io/2021/08/22/linux-yong-hu-he-zu/index.html">
+<meta property="og:site_name" content="Zylx77">
+<meta property="og:description" content="linux用户和组一.Linux用户分类1234567891011121、root用户:权限最高.	操作其他用户的文件，控制可执行程序管理硬件设备，管理文件权限2、系统用户:虚拟用户、伪用户或者假用户。	这类用户不能登录Linux系统。	系统进程运行身份。	系统用户:			ID为1-999，（CentOS7之前为1-499）3、普通用户:	root用户创建，能够使用大部分资源，一些特定权限受限。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zylx77.github.io/img/Linux.png">
+<meta property="article:published_time" content="2021-08-22T05:31:00.000Z">
+<meta property="article:modified_time" content="2022-11-05T07:13:55.512Z">
+<meta property="article:author" content="Gnguyd">
+<meta property="article:tag" content="Linux基础">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://zylx77.github.io/img/Linux.png">
+  
+  
+  
+  <title>Linux用户和组 - Zylx77</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"zylx77.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Zylx77</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux用户和组"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-08-22 13:31" pubdate>
+          2021年8月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux用户和组</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="linux用户和组"><a href="#linux用户和组" class="headerlink" title="linux用户和组"></a>linux用户和组</h1><h2 id="一-Linux用户分类"><a href="#一-Linux用户分类" class="headerlink" title="一.Linux用户分类"></a>一.Linux用户分类</h2><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">1、root用户:权限最高.</span><br>	操作其他用户的文件，控制可执行程序管理硬件设备，管理文件权限<br><br><span class="hljs-section">2、系统用户:虚拟用户、伪用户或者假用户。</span><br>	这类用户不能登录Linux系统。<br>	系统进程运行身份。<br>	系统用户:	<br>		ID为1-999，（CentOS7之前为1-499）<br><br><span class="hljs-section">3、普通用户:</span><br>	root用户创建，能够使用大部分资源，一些特定权限受限。<br>	ID为1000-65535<br></code></pre></td></tr></table></figure>
+
+<h2 id="二-Linux用户登录过程"><a href="#二-Linux用户登录过程" class="headerlink" title="二.Linux用户登录过程"></a>二.Linux用户登录过程</h2><p>1./etc/passwd</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">root:</span><span class="hljs-symbol">x:</span><span class="hljs-number">0</span><span class="hljs-symbol">:</span><span class="hljs-number">0</span><span class="hljs-symbol">:root</span><span class="hljs-symbol">:/root</span><span class="hljs-symbol">:/bin/bash</span><br>账户<span class="hljs-symbol">:</span>密码占位符<span class="hljs-symbol">:UID</span><span class="hljs-symbol">:GID</span><span class="hljs-symbol">:</span>账户信息<span class="hljs-symbol">:</span>家目录<span class="hljs-symbol">:</span>登录shell<br></code></pre></td></tr></table></figure>
+
+<p>家目录:存放用户自己的数据</p>
+<p>2./etc/shadow</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">root</span>:$<span class="hljs-number">6</span>$sVI78ZA4$QQ9jzXKyhjEpsjz6I5lsPAQcNNamPxivy25rnhK1UZ/<span class="hljs-number">1</span>kv07qUrOlN2ZalIpAZwowkEHlk5/<span class="hljs-number">40</span>wPZ8uDioAi41:<span class="hljs-number">17995</span>:<span class="hljs-number">0</span>:<span class="hljs-number">99999</span>:<span class="hljs-number">7</span>:::<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>第1个字段：用户名</p>
+</li>
+<li><p>第2个字段：加密密码，加密算法是SHA512加密算法，如果是“！！”“*”代表没有密码，不能登录</p>
+</li>
+<li><p>第3个字段：密码最后一次修改日期，我们看到root的这个字段是17995，这个是使用1970年1月1日作为标准时间，每过一天，时间戳+1</p>
+</li>
+<li><p>第4个字段：两次密码的修改间隔时间（和第3个字段相比），就是说多少天后可以修改这个密码，我们看到root用户的这个字段是0</p>
+</li>
+<li><p>第5个字段：密码有效期（和第3个字段相比），我们看到root用户的这个字段是99999，基本上是永久有效</p>
+</li>
+<li><p>第6个字段：密码到期前的警告天数（和第5个字段相比），也就说比如我们在第5个字段设置了一个密码有效期，比如10天，然后我们这个字段设置是7，那么就是还剩7天到期的时候，就会有警告了。</p>
+</li>
+<li><p>第7个字段：密码过期后的宽限天数（和第5个字段相比）<br>0代表密码过期后立即失效，-1代表永远不会失效</p>
+</li>
+<li><p>第8个字段：账号失效的时间（要用时间戳表示），如果这个字段设置了失效时间，前面设置的有效期就没用了。</p>
+</li>
+<li><p>第9个字段：保留</p>
+</li>
+</ul>
+<p>3./etc/group</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">root:x:0:</span><br><span class="hljs-section">用户组名称:用户组密码:GID:用户列表</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="三-Linux用户管理命令"><a href="#三-Linux用户管理命令" class="headerlink" title="三.Linux用户管理命令"></a>三.Linux用户管理命令</h2><p>1.添加用户</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">useradd  <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<ul>
+<li><p>-u UID    #指定 UID，这个 UID 必须是大于等于500，并没有其他用户占用的 UID </p>
+</li>
+<li><p>-g GID/GROUPNAME    #指定默认组，可以是 GID 或者 GROUPNAME，同样也必须真实存在 </p>
+</li>
+<li><p>-G GROUPS    #指定额外组 </p>
+</li>
+<li><p>-c COMMENT    #指定用户的注释信息 </p>
+</li>
+<li><p>-d PATH    #指定用户的家目录 </p>
+</li>
+<li><p>-s SHELL    #指定用户的默认 shell，最好是在 /etc/shells 中存在的路径 </p>
+</li>
+<li><p>-s /sbin/nologin    #该用户不能登录，还记得我们上面说到的系统用户不能登录吧？我们可以看到系统用户的 shell 字段也是 /sbin/nologin </p>
+</li>
+<li><p>echo $SHELL     #查看当前用户的 shell 类型 </p>
+</li>
+<li><p>-M  USERNAME    #创建用户但不创建家目录 </p>
+<p>如果用户没有家目录，那么不能切换到该用户 </p>
+</li>
+</ul>
+<p>2.删除用户</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">userdel <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<p>​     -r     #删除用户的同时删除用户家目录</p>
+<p>3.显示账户属性信息</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">id <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<ul>
+<li>id -g USERNAME：显示默认组ID </li>
+<li>id -G USERNAME：显示附加组ID</li>
+<li>id -u USERNAME：显示UID </li>
+<li>id -n -g/-G/-U：显示默认组/附加组/用户的名称 </li>
+</ul>
+<p>4.修改用户信息</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">usermod <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<p> -G GROUPS ：改变用户的附加组，会完全替换原有的附加组 </p>
+<p> -a -G GROUPS ：在原有附加组的基础上追加附加组 </p>
+<p> -d PATH ：修改家目录。修改后原先家目录中的文件不能访问了，因为在当前的家目录中并不存在这些文件。 </p>
+<p> -l NEWNAME ：改变用户名</p>
+<p>-L    #锁定用户  检查是否配置成功,xshell连接不成功</p>
+<p>-U    #解锁用户</p>
+<p>5.passwd</p>
+<p>参数:</p>
+<p>-l：锁定用户账号（root only）<br>        -u：解锁用户账号（root only）<br>        -d：删除用户密码。用户密码删除后不能登录。</p>
+<p>6.添加组</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">groupadd <span class="hljs-selector-attr">[参数]</span> <span class="hljs-selector-attr">[name]</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<p>-g GID GROUPNAME：指定GID</p>
+<p>-r  GROUPNAME：添加一个系统用户组（-r 也适用于 useradd）</p>
+<p>7.删除组</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">groupdel</span><span class="hljs-meta"> [name]</span><br></code></pre></td></tr></table></figure>
+
+<p>8.给组加密码</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">gpasswd</span><span class="hljs-meta"> [name]</span><br></code></pre></td></tr></table></figure>
+
+<p>9.显示当前用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">whoami</span><br></code></pre></td></tr></table></figure>
+
+<p>10.查看登录用户正在使用的进程信息</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">w</span><br></code></pre></td></tr></table></figure>
+
+<p>11.用于不同用户间的切换</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">su</span><br></code></pre></td></tr></table></figure>
+
+<p>参数:</p>
+<p>-l 登录并改变到所切换到的用户环境</p>
+<p>-c 执行一个命令然后退出所切换到的用户环境</p>
+<p>su 默认切换到root</p>
+<h2 id="四-etc-skel目录🐱‍🐉🐱‍🐉🐱‍🐉"><a href="#四-etc-skel目录🐱‍🐉🐱‍🐉🐱‍🐉" class="headerlink" title="四./etc/skel目录🐱‍🐉🐱‍🐉🐱‍🐉"></a>四./etc/skel目录🐱‍🐉🐱‍🐉🐱‍🐉</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/</span>skel 目录(可以隐藏后门,只要创建用户就会留有后门)<br></code></pre></td></tr></table></figure>
+
+<p>/etc/skel目录是用来存放新用户环境变量文件的目录，当我们添加新用户时，这个目录下的所有文件会自动被复制到新添加的用户的家目录下：<br>默认情况下，/etc/skel目录下的所有文件都是隐藏文件（以.点开头的文件）；通过修改，添加，删除/etc/skel目录下的文件，我们可为新创建<br>的用户提供统一的，标准的，初始化用户环境。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="category-chain-item">操作系统</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux%E5%9F%BA%E7%A1%80/">#Linux基础</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux用户和组</div>
+      <div>https://zylx77.github.io/2021/08/22/linux-yong-hu-he-zu/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Gnguyd</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年8月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/10/10/ye-wu-luo-ji-lou-dong/" title="逻辑漏洞">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">逻辑漏洞</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/07/27/linux-fu-wu-ji-jin-cheng/" title="Linux服务及进程">
+                        <span class="hidden-mobile">Linux服务及进程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://zylx77.github.io" target="_blank" rel="nofollow noopener"><span>Zylx77</span></a> <i class="iconfont icon-love"></i> <a href="https://zylx77.github.io" target="_blank" rel="nofollow noopener"><span>Blog</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
